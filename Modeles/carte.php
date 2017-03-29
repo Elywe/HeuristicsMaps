@@ -12,45 +12,36 @@
  * @author Mélina
  */
 class carte {
+
     private $identifiant;
     private $nom;
-    private $auteur;
-    
-    function __construct($argument)
-    {
-        foreach($argument as $k => $v){
+
+    function __construct($argument) {
+        foreach ($argument as $k => $v) {
             $this->$k = $v;
         }
     }
 
-    public function hydrate($argument)
-    {
-        foreach($argument as $k => $v){
+    public function hydrate($argument) {
+        foreach ($argument as $k => $v) {
             $this->$k = $v;
         }
     }
 
-    public function getIdentifiant(){
+    public function getIdentifiant() {
         return $this->identifiant;
     }
-    
-    public function getNom(){
+
+    public function getNom() {
         return $this->nom;
     }
-    
-    public function getAuteur(){
-        return $this->auteur;
-    }
-    
-    public function setIdentifiant($_id){
+
+    public function setIdentifiant($_id) {
         $this->identifiant = $_id;
     }
-    
-    public function setNom($_nom){
+
+    public function setNom($_nom) {
         $this->nom = $_nom;
     }
-    
-    public function setAuteur($_auteur){
-        $this->auteur = $_auteur;
-    }
+
 }
