@@ -15,6 +15,7 @@ class carte {
 
     private $identifiant;
     private $nom;
+    private $racine;
 
     function __construct($argument) {
         foreach ($argument as $k => $v) {
@@ -42,6 +43,14 @@ class carte {
 
     public function setNom($_nom) {
         $this->nom = $_nom;
+    }
+
+    public function getRacine() {
+        return $this->racine;
+    }
+
+    public function setRacine($_racine) {
+        $this->racine = $_racine;
     }
 
 }

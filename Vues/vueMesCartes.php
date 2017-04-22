@@ -1,12 +1,18 @@
 <h1>Mes Cartes</h1>
-<form class="carteBox" method="post" action="index.php?section=formulaire">
+<form action="index.php?section=mesCartes&action=ajoutCarte" method="post">
+    <p>Nom : <input type="text" name="nom" id="nom" /></p>
+    <p><input type="submit" id="Valider" name="Valider" value="Valider"></p>
+</form>
+<form class="carteBox" method="post" action="index.php?section=mesCartes&action=supprimerCarte">
     <select id="carte" name="carte">
-        <option value="Carte_1">Carte 1</option>
-        <option value="Carte_2">Carte 2</option>
-        <option value="Carte_3">Carte 3</option>
-        <option value="Carte_4">Carte 4</option>
+        <?php
+        foreach ($cartes as $carte) {
+            echo "<option value=\"" . $carte->getIdentifiant() . "\">" . $carte->getNom() . "</option>";
+        }
+        ?>
     </select>
     <input type="submit" name="Valider" value="Valider">
+    <input type="submit" name="Supprimer" value="Supprimer">
     <table>
         <tr>
             <th>identifiant</th>
