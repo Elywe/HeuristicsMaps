@@ -9,20 +9,18 @@ html{
 
 body{
 	height: 100%;
-    background-color: #c98c60;
     font-family: Helvetica, Geneva, sans-serif;
 }
 
 .menu{
-    background-color: #4aa278;
-    padding-top: 1em;
+    background-color: #d1c4e9;
     text-align: center;
-    padding-bottom: 2em;
+    padding: 1em;
 }
 
 .menu li{
     display : inline;
-    padding-right: 1em;
+    padding: 1em;
 }
 
 .menu a:hover{
@@ -30,13 +28,15 @@ body{
 }
 
 .menu a{
+	color: #F4F4F4;
     text-decoration: none;
 }
 
 h1{
-    background-color: #4eb785;
+    color: #F4F4F4;
+	background-color: #b39ddb ;
     text-align: center;
-    padding-bottom: 1em;
+    padding: 1em;
 }
 
 .carteBox{
@@ -62,9 +62,27 @@ select{
 	width: 300px;
 }
 
+.bouton {
+	margin: 10px;
+	padding: 12px 12px;
+	cursor: pointer;
+	color: #fff;
+	border: 0 none;
+	border-radius: 4px;
+	font-size: 15px;
+}
+
+.bouton:hover {
+	opacity: .85;
+}
+
+#contenu{
+	padding:1em;
+}
+
 .page-wrap {
 	min-height: 100%;
-	margin-bottom: -120px;
+	margin-bottom: -130px;
 }
 .page-wrap:after {
 	content: "";
@@ -75,5 +93,7 @@ select{
 }
 
 footer{
-    background-color: #cbbe62;
+	padding-left: 1em;
+	padding-top: 10px;
+    background-color: #b39ddb;
 }

@@ -3,12 +3,12 @@
 class mesCartes {
 
     public function defaut() {
+        $donnees["titre"] = "Mes cartes";
         include_once('Modeles/carteManager.php');
         $manager = new carteManager();
         $methode = "getList";
-        $cartes = $manager->$methode();
-        include_once("Vues/vueMesCartes.php");
-        include_once("Vues/vueFooter.html");
+        $donnees["cartes"] = $manager->$methode();
+        afficherVues("Vues/vueMesCartes.php", $donnees);
     }
 
     public function ajoutCarte() {
@@ -23,8 +23,7 @@ class mesCartes {
             $manager->ajouter($carte);
         }
         $cartes = $manager->getList();
-        include_once("Vues/vueMesCartes.php");
-        include_once("Vues/vueFooter.html");
+        afficherVues("Vues/vueMesCartes.php", $donnees);
     }
 
     public function supprimerCarte() {
@@ -34,9 +33,7 @@ class mesCartes {
             $carteASupprimer = htmlspecialchars($_POST['carte']);
             $manager->supprimer($carteASupprimer);
             $cartes = $manager->getList();
-            require_once("Vues/vueMenu.html");
-            include_once("Vues/vueMesCartes.php");
-            include_once("Vues/vueFooter.html");
+            afficherVues("Vues/vueMesCartes.php", $donnees);
         }
     }
 
