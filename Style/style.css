@@ -13,9 +13,11 @@ body{
 }
 
 .menu{
+	font-family: 'Open sans', sans-serif;
     background-color: #d1c4e9;
     text-align: center;
     padding: 1em;
+	font-weight: bold;
 }
 
 .menu li{
@@ -33,14 +35,26 @@ body{
 }
 
 h1{
+	font-family: 'Oswald', sans-serif;
     color: #F4F4F4;
 	background-color: #b39ddb ;
     text-align: center;
-    padding: 1em;
+    padding: 0.4em;
+	font-size: 35px;
+}
+
+h2{
+	font-family: 'Pacifico', sans-serif;
+	font-weight: bold;
 }
 
 .carteBox{
+	font-family: 'Open Sans', sans-serif;
     padding-bottom: 2em;
+}
+
+.ajoutBox{
+	height: 24px;
 }
 
 select{
@@ -56,20 +70,45 @@ select{
 	border: 1px solid #AAA;
 	color: #555;
 	font-size: inherit;
-	margin: 20px;
 	overflow: hidden;
 	padding: 5px 10px;
 	width: 300px;
 }
 
 .bouton {
-	margin: 10px;
-	padding: 12px 12px;
+	padding: 7px 7px;
 	cursor: pointer;
 	color: #fff;
 	border: 0 none;
+	background-color: #b39ddb;
 	border-radius: 4px;
 	font-size: 15px;
+}
+
+.erreur{
+
+}
+
+.footerGauche{
+	float: left;
+	width:33%;
+}
+
+.footerCentre{
+	float: left;
+	width:33%;
+	text-align: center;
+}
+
+.footerDroit{
+	float:left;
+	width:33%;
+	text-align: right;
+}
+
+.ub{
+	margin: 1em;
+	opacity: 0.7;
 }
 
 .bouton:hover {
@@ -77,6 +116,7 @@ select{
 }
 
 #contenu{
+	color:#555;
 	padding:1em;
 }
 
@@ -93,7 +133,10 @@ select{
 }
 
 footer{
+	font-family: 'Open Sans', sans-serif;
+	color:white;
 	padding-left: 1em;
 	padding-top: 10px;
     background-color: #b39ddb;
+	font-size: 12px;
 }

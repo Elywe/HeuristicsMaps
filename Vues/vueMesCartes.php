@@ -1,8 +1,17 @@
 <div id="contenu">
+    <?php
+    if (isset($erreur)) {
+        echo "<p class=\"erreur\">$erreur</p>";
+    }
+    ?>
     <form action="index.php?section=mesCartes&action=ajoutCarte" method="post">
-        <p>Nom : <input type="text" name="nom" id="nom" /></p>
-        <p><input type="submit" class="bouton" id="Valider" name="Valider" value="Valider"></p>
+        <div>
+            <h2>Ajouter une carte</h2>
+            <input class="ajoutBox" type="text" name="nom" id="nom" />
+            <input type="submit" class="bouton" id="Valider" name="Valider" value="Valider">
+        </div>
     </form>
+    <h2>Visualiser mes cartes</h2>
     <form class="carteBox" method="post" action="index.php?section=mesCartes&action=supprimerCarte">
         <select id="carte" name="carte">
             <?php

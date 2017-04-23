@@ -19,4 +19,5 @@ if (isset($_GET['action'])) {
 $controleur = new $nomControleur();
 $controleur->$methode();
 ?>
+<link href="https://fonts.googleapis.com/css?family=Open+Sans|Oswald|Pacifico|Roboto" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="Style/style.css">
