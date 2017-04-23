@@ -7,7 +7,7 @@
     <form action="index.php?section=mesCartes&action=ajoutCarte" method="post">
         <div>
             <h2>Ajouter une carte</h2>
-            <input class="ajoutBox" type="text" name="nom" id="nom" />
+            <input class="ajoutBox" type="text" name="nom" id="nom" required/>
             <input type="submit" class="bouton" id="Valider" name="Valider" value="Valider">
         </div>
     </form>
