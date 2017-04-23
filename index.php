@@ -5,8 +5,7 @@
  */
 include_once("Controleurs/Outils.php");
 if (!isset($_GET['section']) OR $_GET['section'] == 'index') {
-    include_once('Controleurs/Menu.php');
-    $nomControleur = "Menu";
+    $nomControleur = "Accueil";
 } else {
     include_once('Controleurs/' . $_GET['section'] . '.php');
     $nomControleur = $_GET['section'];

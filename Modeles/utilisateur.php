@@ -1,10 +1,10 @@
 <?php
 
-class carte {
+class utilisateur {
 
     private $identifiant;
-    private $nom;
-    private $racine;
+    private $pseudo;
+    private $mdp;
 
     function __construct($argument) {
         foreach ($argument as $k => $v) {
@@ -22,24 +22,24 @@ class carte {
         return $this->identifiant;
     }
 
-    public function getNom() {
-        return $this->nom;
-    }
-
     public function setIdentifiant($_id) {
         $this->identifiant = $_id;
     }
 
-    public function setNom($_nom) {
-        $this->nom = $_nom;
+    public function getPseudo() {
+        return $this->pseudo;
     }
 
-    public function getRacine() {
-        return $this->racine;
+    public function setPseudo($_pseudo) {
+        $this->pseudo = $_pseudo;
     }
 
-    public function setRacine($_racine) {
-        $this->racine = $_racine;
+    public function getMdp() {
+        return $this->mdp;
+    }
+
+    public function setMdp($_mdp) {
+        $this->mdp = $_mdp;
     }
 
 }

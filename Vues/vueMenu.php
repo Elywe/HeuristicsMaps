@@ -10,7 +10,7 @@
                 <h1><?php echo $titre; ?></h1>
                 <nav>
                     <ul class="menu">
-                        <li><a href="index.php?section=Menu">Menu</a></li>
+                        <li><a href="index.php?section=Accueil">Accueil</a></li>
                         <li><a href="index.php?section=Connexion">Connexion</a></li>
                         <li><a href="index.php?section=mesCartes">Mes Cartes</a></li>
                     </ul>

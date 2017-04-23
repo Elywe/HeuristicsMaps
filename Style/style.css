@@ -9,7 +9,7 @@ html{
 
 body{
 	height: 100%;
-    font-family: Helvetica, Geneva, sans-serif;
+	font-family: 'Open sans', sans-serif;
 }
 
 .menu{
@@ -34,6 +34,11 @@ body{
     text-decoration: none;
 }
 
+#pAccueil{
+	text-align: center;
+	position:relative;
+}
+
 h1{
 	font-family: 'Oswald', sans-serif;
     color: #F4F4F4;
@@ -46,6 +51,7 @@ h1{
 h2{
 	font-family: 'Pacifico', sans-serif;
 	font-weight: bold;
+	padding-bottom: 1em;
 }
 
 .carteBox{
@@ -55,6 +61,7 @@ h2{
 
 .ajoutBox{
 	height: 24px;
+	margin-bottom:0.5em;
 }
 
 select{
@@ -105,10 +112,25 @@ select{
 	width:33%;
 	text-align: right;
 }
+.demandeConnexion{
+	text-align: center;
+}
+
+#Nouveau{
+	float: left;
+	width:50%;
+}
+
+#Inscrit{
+	float: left;
+}
 
 .ub{
 	margin: 1em;
 	opacity: 0.7;
+}
+#h2Accueil{
+	text-align: center;
 }
 
 .bouton:hover {

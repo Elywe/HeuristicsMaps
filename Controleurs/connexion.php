@@ -3,8 +3,13 @@
 class connexion {
 
     public function defaut() {
+        $donnees["titre"] = "Connexion";
+        include_once('Modeles/carteManager.php');
+        afficherVues("Vues/vueConnexion.php", $donnees);
+    }
 
-        include_once("Vues/vueFooter.html");
+    public function ajoutUtilisateur() {
+        
     }
 
 }
