@@ -10,7 +10,7 @@ class carteManager {
         $this->db = new PDO('mysql:host=localhost;dbname=projetweb;charset=utf8', 'root', '');
     }
 
-    public function getList() {
+    public function getListCartes() {
         $liste = array();
         $query = $this->db->query('SELECT * FROM carte');
         while ($donnees = $query->fetch(PDO::FETCH_ASSOC)) {

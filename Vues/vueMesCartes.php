@@ -22,18 +22,22 @@
         </select>
         <input type="submit" class="bouton" name="Valider" value="Valider">
         <input type="submit" class="bouton" name="Supprimer" value="Supprimer">
-        <table>
-            <tr>
-                <th>identifiant</th>
-                <th>nom</th>
-            </tr>
-            <?php
-            foreach ($cartes as $carte) {
-                echo "<tr><td>" . $carte->getIdentifiant() . "</td>";
-                echo "<td>" . $carte->getNom() . "</td>";
-                echo "</tr>";
-            }
-            ?>
-        </table>
     </form>
+    <table>
+        <tr>
+            <th>identifiant</th>
+            <th>label</th>
+            <th>parent</th>
+            <th>estDansCarte</th>
+        </tr>
+        <?php
+        foreach ($noeuds as $noeud) {
+            echo "<tr><td>" . $noeud->getIdentifiant() . "</td>";
+            echo "<td>" . $noeud->getLabel() . "</td>";
+            echo "<td>" . $noeud->getParent() . "</td>";
+            echo "<td>" . $noeud->getEstDansCarte() . "</td>";
+            echo "</tr>";
+        }
+        ?>
+    </table>
 </div>
