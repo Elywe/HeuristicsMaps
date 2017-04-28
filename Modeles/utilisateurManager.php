@@ -14,7 +14,7 @@ class utilisateurManager {
         $liste = array();
         $query = $this->db->query('SELECT * FROM utilisateur');
         while ($donnees = $query->fetch(PDO::FETCH_ASSOC)) {
-            $liste[] = new carte($donnees);
+            $liste[] = new utilisateur($donnees);
         }
         return $liste;
     }

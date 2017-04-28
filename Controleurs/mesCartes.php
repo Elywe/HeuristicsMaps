@@ -1,11 +1,15 @@
 <?php
+
 class mesCartes {
 
     public function defaut() {
         $donnees["titre"] = "Mes cartes";
         include_once('Modeles/carteManager.php');
-        $manager = new carteManager();
-        $donnees["cartes"] = $manager->getList();
+        include_once('Modeles/noeudManager.php');
+        $managerCarte = new carteManager();
+        $managerNoeud = new noeudManager();
+        $donnees["cartes"] = $managerCarte->getListCartes();
+        $donnees["noeuds"] = $managerNoeud->getListNoeuds();
         afficherVues("Vues/vueMesCartes.php", $donnees);
     }
 
@@ -21,7 +25,7 @@ class mesCartes {
             $carte = new carte($_POST);
             $manager->ajouter($carte);
         }
-        $donnees["cartes"] = $manager->getList();
+        $donnees["cartes"] = $manager->getListCartes();
         afficherVues("Vues/vueMesCartes.php", $donnees);
     }
 
@@ -35,7 +39,7 @@ class mesCartes {
         } else {
             $donnees['erreur'] = "Pas de carte sélectionnée.";
         }
-        $donnees["cartes"] = $manager->getList();
+        $donnees["cartes"] = $manager->getListCartes();
         afficherVues("Vues/vueMesCartes.php", $donnees);
     }
 
