@@ -1,0 +1,183 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+html{
+	height: 100%;
+}
+
+body{
+	height: 100%;
+	font-family: 'Open sans', sans-serif;
+}
+
+.menu{
+	font-family: 'Open sans', sans-serif;
+    background-color: #d1c4e9;
+    text-align: center;
+    padding: 1em;
+	font-weight: bold;
+}
+
+.menu li{
+    display : inline;
+    padding: 1em;
+}
+
+.menu a:hover{
+    opacity: 0.7;
+}
+
+.menu a{
+	color: #F4F4F4;
+    text-decoration: none;
+}
+
+#pAccueil{
+	text-align: center;
+	position:relative;
+}
+
+h1{
+	font-family: 'Oswald', sans-serif;
+    color: #F4F4F4;
+	background-color: #b39ddb ;
+    text-align: center;
+    padding: 0.4em;
+	font-size: 35px;
+}
+
+h2{
+	font-family: 'Pacifico', sans-serif;
+	font-weight: bold;
+	padding-bottom: 1em;
+}
+
+.carteBox{
+	font-family: 'Open Sans', sans-serif;
+    padding-bottom: 2em;
+}
+
+.ajoutBox{
+	height: 24px;
+	margin-bottom:0.5em;
+}
+
+select{
+	-webkit-appearance: button;
+	-webkit-border-radius: 2px;
+	-webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+	-webkit-padding-end: 20px;
+	-webkit-padding-start: 2px;
+	-webkit-user-select: none;
+	background-image: url("../Images/selectBoxImage.png"), -webkit-linear-gradient(#FAFAFA, #F4F4F4 40%, #E5E5E5);
+	background-position: 97% center;
+	background-repeat: no-repeat;
+	border: 1px solid #AAA;
+	color: #555;
+	font-size: inherit;
+	overflow: hidden;
+	padding: 5px 10px;
+	width: 300px;
+}
+
+.bouton {
+	padding: 7px 7px;
+	cursor: pointer;
+	color: #fff;
+	border: 0 none;
+	background-color: #b39ddb;
+	border-radius: 4px;
+	font-size: 15px;
+}
+
+.erreur{
+
+}
+
+.footerGauche{
+	float: left;
+	width:33%;
+}
+
+.footerCentre{
+	float: left;
+	width:33%;
+	text-align: center;
+}
+
+.footerDroit{
+	float:left;
+	width:33%;
+	text-align: right;
+}
+.demandeConnexion{
+	text-align: center;
+	margin-top:30px;
+
+}
+
+#Nouveau{
+	box-sizing: border-box;
+	float: left;
+	width:47.5%;
+	border-style:solid;
+	border-radius: 4px;
+	border-color: #A9A9A9;
+	height:500px;
+	padding-top: 30px;
+	margin-right: 2.5%;
+}
+
+#Inscrit{
+	box-sizing: border-box;
+	float: left;
+	width:47.5%;
+	border-style:solid;
+	border-radius: 4px;
+	border-color: #A9A9A9;
+	height:500px;
+	padding-top: 30px;
+	margin-left: 2.5%;
+}
+
+.ub{
+	margin: 1em;
+	opacity: 0.7;
+}
+#h2Accueil{
+	text-align: center;
+}
+
+.bouton:hover {
+	opacity: .85;
+}
+
+#contenu{
+	color:#555;
+	width:800px;
+	margin: 0 auto;
+	padding-top: 3em;
+}
+
+.page-wrap {
+	min-height: 100%;
+	margin-bottom: -130px;
+}
+.page-wrap:after {
+	content: "";
+	display: block;
+}
+.site-footer, .page-wrap:after {
+	height: 120px;
+}
+
+footer{
+	font-family: 'Open Sans', sans-serif;
+	color:white;
+	padding-left: 1em;
+	padding-top: 10px;
+    background-color: #b39ddb;
+	font-size: 12px;
+}
