@@ -24,12 +24,19 @@ class carteManager {
     }
 
     public function ajouter($carte) {
-        $query = $this->db->prepare('INSERT INTO carte (identifiant, nom, racine) values (:identifiant, :nom, :racine)');
+        $query = $this->db->prepare('INSERT INTO carte (identifiant, nom, racine,visibilite) values (:identifiant, :nom, :racine, :visibilite)');
         $query->bindValue(':identifiant', null, PDO::PARAM_INT);
         $query->bindValue(':nom', $carte->getNom());
+        $query->bindValue(':visibilite', $carte->getVisibilite());
         $query->bindValue(':racine', null, PDO::PARAM_INT);
         $query->execute();
         $carte->setIdentifiant($this->db->lastInsertId());
+		
+		$query = $this->db->prepare("INSERT INTO utilise values (:idCarte, :idUtilisateur, 'createur')");
+        $query->bindValue(':idCarte', $carte->getIdentifiant());
+        $query->bindValue(':idUtilisateur', $_SESSION['identifiant']);
+		$query->execute();
+		//$query = $this->db->query("insert into utilise values (".$carte.getIdentifiant().",".$_SESSION['identifiant'].",'createur')");
     }
 
     public function update($carte) {

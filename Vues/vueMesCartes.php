@@ -3,14 +3,23 @@
     if (isset($erreur)) {
         echo "<p class=\"erreur\">$erreur</p>";
     }
+	if(isset($_SESSION['pseudo'])){
     ?>
+	
     <form action="index.php?section=mesCartes&action=ajoutCarte" method="post">
         <div>
             <h2>Ajouter une carte</h2>
             <input class="ajoutBox" type="text" name="nom" id="nom" required/>
+            <select id="visibilite" name="visibilite">
+                <option value="public">Public</option>
+                <option value="prive">Privé</option>   
+			</select>
             <input type="submit" class="bouton" id="Valider" name="Valider" value="Valider">
         </div>
     </form>
+	<?php 
+	} 
+	?>
     <h2>Visualiser mes cartes</h2>
     <form class="carteBox" method="post" action="index.php?section=mesCartes&action=supprimerCarte">
         <select id="carte" name="carte">
