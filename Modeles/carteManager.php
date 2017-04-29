@@ -12,8 +12,12 @@ class carteManager {
 
     public function getListCartes() {
         $liste = array();
-        $query = $this->db->query('SELECT * FROM carte');
-        while ($donnees = $query->fetch(PDO::FETCH_ASSOC)) {
+		if(isset($_SESSION['identifiant'])){
+			$query = $this->db->query("SELECT distinct identifiant,nom,racine,visibilite FROM carte,utilise  where visibilite='public' or identifiant=idCarte and idUtilisateur=".$_SESSION['identifiant']);
+        }else{
+			$query = $this->db->query("SELECT identifiant,nom,racine,visibilite FROM carte  where visibilite='public'");
+		}
+		while ($donnees = $query->fetch(PDO::FETCH_ASSOC)) {
             $liste[] = new carte($donnees);
         }
         return $liste;
