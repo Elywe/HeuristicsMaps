@@ -1,5 +1,6 @@
 <?php
 class connexion {
+	
 
     public function defaut() {
         $donnees["titre"] = "Connexion";
@@ -18,8 +19,7 @@ class connexion {
             $res=$manager->getlogin($pseudo,$mdp);
 			if($res == 'Connecte')
 			{   
-				$_SESSION['nom']=$pseudo;  //ouverture de la session de l'utilisateur à la connexion
-				include_once('Controleurs/mesCartes.php');
+                include_once('Controleurs/mesCartes.php');
 				$cartes = new mesCartes();
 				$cartes->defaut();
 			}else {
@@ -34,23 +34,25 @@ class connexion {
 	
 	public function deco(){
 		session_destroy(); 
-		$this->defaut();
+		Header('Location: index.php?section=Connexion');
 	}
 
 	public function ajoutUtilisateur(){
 		include_once('Modeles/utilisateurManager.php');
-        $manaUtil = new utilisateurManager();
-		if (isset($_POST['ValInsc'])) {
-            unset($_POST['ValInsc']);
-            foreach ($_POST as $key => $value) {
-                $_POST[$key] = htmlspecialchars($value);
+             $manaUtil = new utilisateurManager();
+            if (isset($_POST['ValInsc'])) {
+                unset($_POST['ValInsc']);
+                foreach ($_POST as $key => $value) {
+                    $_POST[$key] = htmlspecialchars($value);
+                }
+                $util = new utilisateur($_POST);
+				$manaUtil->ajouter($util);
             }
-            $util = new utilisateur($_POST);
-            $manaUtil->ajouter($util);
-        }
 		include_once('Controleurs/mesCartes.php');
 		$cartes = new mesCartes();
 		$cartes->defaut();
 		//afficherVues("Vues/vueMesCartes.php", $donnees);
 	}
+        
+
 }

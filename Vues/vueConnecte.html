@@ -1,0 +1,19 @@
+<div id="contenu" class="demandeConnexion">
+	<p>Nom d'utilisateur : <?php echo $_SESSION['pseudo']; ?></p>
+	
+	<?php
+		if (isset($erreur)) {
+			echo "<p class=\"erreur\">$erreur</p>";
+		}
+		
+	?>
+	<div>
+		<form method="post" action="index.php?section=connecte&action=modMdp">
+			<h2>Changer de mot de passe</h2>
+			<input class="ajoutBox" type="password" name="passChange" id="pass" placeholder="Nouveau mot de passe"/><br>
+			<input class="bouton" type="submit" name="changeMdp" value="Changer" /></p> 
+		</form>
+	</div>
+	
+	
+</div>
