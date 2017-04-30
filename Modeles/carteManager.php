@@ -1,6 +1,7 @@
 <?php
 
 include_once("carte.php");
+include_once("noeud.php");
 
 class carteManager {
 
@@ -23,7 +24,7 @@ class carteManager {
         return $liste;
     }
 
-    public function ajouter($carte) {
+    public function ajouterCarte($carte) {
         $query = $this->db->prepare('INSERT INTO carte (identifiant, nom, racine,visibilite) values (:identifiant, :nom, :racine, :visibilite)');
         $query->bindValue(':identifiant', null, PDO::PARAM_INT);
         $query->bindValue(':nom', $carte->getNom());
@@ -38,7 +39,7 @@ class carteManager {
         $query->execute();
     }
 
-    public function update($carte) {
+    public function updateCarte($carte) {
         $query = $this->db->prepare('UPDATE carte
 			SET identifiant=:identifiant, nom=:nom, racine=:racine
 			WHERE identifiant=:id');
@@ -48,10 +49,44 @@ class carteManager {
         $query->execute();
     }
 
-    public function supprimer($idCarte) {
+    public function supprimerCarte($idCarte) {
         $query = $this->db->prepare('DELETE FROM carte WHERE identifiant=:id');
         $query->bindValue(':id', $idCarte, PDO::PARAM_INT);
         $query->execute();
+    }
+
+    public function getListNoeuds() {
+        $liste = array();
+        $query = $this->db->query('SELECT * FROM noeud');
+        while ($donnees = $query->fetch(PDO::FETCH_ASSOC)) {
+            $liste[] = new noeud($donnees);
+        }
+        return $liste;
+    }
+
+    public function ajoutNoeud() {
+        $query = $this->db->prepare('INSERT INTO noeud (identifiant, label, parent, estDansCarte) values (:identifiant, :label, :parent, :estDansCarte)');
+        $query->bindValue(':identifiant', null, PDO::PARAM_INT);
+        $query->bindValue(':label', $noeud->getLabel());
+        $query->bindValue(':parent', $noeud->getParent());
+        $query->bindValue(':estDansCarte', $noeud->getEstDansCartes());
+        $query->execute();
+        $noeud->setIdentifiant($this->db->lastInsertId());
+    }
+
+    public function supprimerNoeud($idNoeud) {
+        $query = $this->db->prepare('DELETE FROM noeud WHERE identifiant=:id');
+        $query->bindValue(':id', $idNoeud, PDO::PARAM_INT);
+        $query->execute();
+    }
+
+    public function getListHierarchique() {
+        $liste = array();
+        $query = $this->db->query('SELECT * FROM noeud');
+        while ($donnees = $query->fetch(PDO::FETCH_ASSOC)) {
+            $liste[] = new noeud($donnees);
+        }
+        return $liste;
     }
 
 }

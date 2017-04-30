@@ -5,11 +5,9 @@ class mesCartes {
     public function defaut() {
         $donnees["titre"] = "Mes cartes";
         include_once('Modeles/carteManager.php');
-        include_once('Modeles/noeudManager.php');
         $managerCarte = new carteManager();
-        $managerNoeud = new noeudManager();
         $donnees["cartes"] = $managerCarte->getListCartes();
-        $donnees["noeuds"] = $managerNoeud->getListNoeuds();
+        $donnees["noeuds"] = $managerCarte->getListNoeuds();
         afficherVues("Vues/vueMesCartes.php", $donnees);
     }
 
@@ -23,7 +21,7 @@ class mesCartes {
                 $_POST[$key] = htmlspecialchars($value);
             }
             $carte = new carte($_POST);
-            $manager->ajouter($carte);
+            $manager->ajouterCarte($carte);
         }
         $donnees["cartes"] = $manager->getListCartes();
         afficherVues("Vues/vueMesCartes.php", $donnees);
@@ -35,7 +33,7 @@ class mesCartes {
         $manager = new carteManager();
         if (isset($_POST['Supprimer']) && isset($_POST['carte'])) {
             $carteASupprimer = htmlspecialchars($_POST['carte']);
-            $manager->supprimer($carteASupprimer);
+            $manager->supprimerCarte($carteASupprimer);
         } else {
             $donnees['erreur'] = "Pas de carte sélectionnée.";
         }
