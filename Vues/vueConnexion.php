@@ -1,9 +1,8 @@
 <div id="contenu" class="demandeConnexion">
-	<?php
-	if (isset($erreur)) {
+    <?php
+    if (isset($erreur)) {
         echo "<p class=\"erreur\">$erreur</p>";
     }
-	
     ?>
     <div id="Nouveau">
         <form action="index.php?section=connexion&action=ajoutUtilisateur" method="post">

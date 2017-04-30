@@ -27,38 +27,24 @@ class utilisateurManager {
         $query->execute();
         $utilisateur->setIdentifiant($this->db->lastInsertId());
     }
-	
-	/*public function getlogin()
-	{
-		if(isset($_POST['pseudoConnec']) && isset($_POST['passConnec'])){
-			$sql = $this->db->query("SELECT * FROM utilisateur where pseudo='".$_POST['pseudoConnec']."' and mdp='".$_POST['passConnec']."'");
-			if($sql->fetch()){
-				return 'Connecte';
-			}else{
-				return 'Utilisateur non reconnu';
-			}
-		}
-	}*/
-	public function getlogin($pseudo,$mdp)
-	{
-		$sql = $this->db->query("SELECT identifiant,pseudo,mdp FROM utilisateur where pseudo='".$pseudo."' and mdp='".$mdp."'");
-			if($donnees = $sql->fetch(PDO::FETCH_ASSOC)){
-				$_SESSION['identifiant']=$donnees['identifiant'];
-				$_SESSION['pseudo']=$donnees['pseudo'];  //ouverture de la session de l'utilisateur à la connexion
-				$_SESSION['mdp']=$mdp;
-				return 'Connecte';
-			}else{
-				return 'Utilisateur non reconnu';
-			}
-		
-	}
-	
+
+    public function getlogin($pseudo, $mdp) {
+        $sql = $this->db->query("SELECT identifiant,pseudo,mdp FROM utilisateur where pseudo='" . $pseudo . "' and mdp='" . $mdp . "'");
+        if ($donnees = $sql->fetch(PDO::FETCH_ASSOC)) {
+            $_SESSION['identifiant'] = $donnees['identifiant'];
+            $_SESSION['pseudo'] = $donnees['pseudo'];  //ouverture de la session de l'utilisateur à la connexion
+            $_SESSION['mdp'] = $mdp;
+            return 'Connecte';
+        } else {
+            return 'Utilisateur non reconnu';
+        }
+    }
 
     public function update($utilisateur) {
-		$query = $this->db->query("UPDATE utilisateur SET mdp='".$utilisateur->getMdp()."' WHERE identifiant=".$utilisateur->getIdentifiant());
-		$_SESSION['identifiant']=$utilisateur->getIdentifiant();
-		$_SESSION['pseudo']=$utilisateur->getPseudo();  //ouverture de la session de l'utilisateur à la connexion
-		$_SESSION['mdp']=$utilisateur->getMdp();
+        $query = $this->db->query("UPDATE utilisateur SET mdp='" . $utilisateur->getMdp() . "' WHERE identifiant=" . $utilisateur->getIdentifiant());
+        $_SESSION['identifiant'] = $utilisateur->getIdentifiant();
+        $_SESSION['pseudo'] = $utilisateur->getPseudo();  //ouverture de la session de l'utilisateur à la connexion
+        $_SESSION['mdp'] = $utilisateur->getMdp();
     }
 
     public function supprimer($idUtilisateur) {

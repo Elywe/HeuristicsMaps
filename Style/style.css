@@ -64,6 +64,11 @@ h2{
 	margin-bottom:0.5em;
 }
 
+#visibilite{
+
+	width: 100px;
+}
+
 select{
 	-webkit-appearance: button;
 	-webkit-border-radius: 2px;

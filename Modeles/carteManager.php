@@ -12,12 +12,12 @@ class carteManager {
 
     public function getListCartes() {
         $liste = array();
-		if(isset($_SESSION['identifiant'])){
-			$query = $this->db->query("SELECT distinct identifiant,nom,racine,visibilite FROM carte,utilise  where visibilite='public' or identifiant=idCarte and idUtilisateur=".$_SESSION['identifiant']);
-        }else{
-			$query = $this->db->query("SELECT identifiant,nom,racine,visibilite FROM carte  where visibilite='public'");
-		}
-		while ($donnees = $query->fetch(PDO::FETCH_ASSOC)) {
+        if (isset($_SESSION['identifiant'])) {
+            $query = $this->db->query("SELECT distinct identifiant,nom,racine,visibilite FROM carte,utilise  where visibilite='public' or identifiant=idCarte and idUtilisateur=" . $_SESSION['identifiant']);
+        } else {
+            $query = $this->db->query("SELECT identifiant,nom,racine,visibilite FROM carte  where visibilite='public'");
+        }
+        while ($donnees = $query->fetch(PDO::FETCH_ASSOC)) {
             $liste[] = new carte($donnees);
         }
         return $liste;
@@ -31,12 +31,11 @@ class carteManager {
         $query->bindValue(':racine', null, PDO::PARAM_INT);
         $query->execute();
         $carte->setIdentifiant($this->db->lastInsertId());
-		
-		$query = $this->db->prepare("INSERT INTO utilise values (:idCarte, :idUtilisateur, 'createur')");
+
+        $query = $this->db->prepare("INSERT INTO utilise values (:idCarte, :idUtilisateur, 'createur')");
         $query->bindValue(':idCarte', $carte->getIdentifiant());
         $query->bindValue(':idUtilisateur', $_SESSION['identifiant']);
-		$query->execute();
-		//$query = $this->db->query("insert into utilise values (".$carte.getIdentifiant().",".$_SESSION['identifiant'].",'createur')");
+        $query->execute();
     }
 
     public function update($carte) {

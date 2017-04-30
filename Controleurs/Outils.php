@@ -1,5 +1,7 @@
 <?php
+
 session_start();
+
 function afficherVues($vue, $donnees) {
     //création variables (cartes, titre)
     foreach ($donnees as $k => $v) {

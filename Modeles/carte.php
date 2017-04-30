@@ -5,7 +5,7 @@ class carte {
     private $identifiant;
     private $nom;
     private $racine;
-	private $visibilite;
+    private $visibilite;
 
     function __construct($argument) {
         foreach ($argument as $k => $v) {
@@ -42,8 +42,8 @@ class carte {
     public function setRacine($_racine) {
         $this->racine = $_racine;
     }
-	
-	public function getVisibilite() {
+
+    public function getVisibilite() {
         return $this->visibilite;
     }
 

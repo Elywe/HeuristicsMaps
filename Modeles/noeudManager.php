@@ -19,4 +19,14 @@ class noeudManager {
         return $liste;
     }
 
+    public function ajoutNoeud() {
+        $query = $this->db->prepare('INSERT INTO noeud (identifiant, label, parent, estDansCarte) values (:identifiant, :label, :parent, :estDansCarte)');
+        $query->bindValue(':identifiant', null, PDO::PARAM_INT);
+        $query->bindValue(':label', $noeud->getLabel());
+        $query->bindValue(':parent', $noeud->getParent());
+        $query->bindValue(':estDansCarte', $noeud->getEstDansCartes());
+        $query->execute();
+        $noeud->setIdentifiant($this->db->lastInsertId());
+    }
+
 }
