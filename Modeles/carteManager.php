@@ -80,9 +80,11 @@ class carteManager {
         $query->execute();
     }
 
-    public function getListHierarchique() {
+    public function getListPourUneCarte($idCarte) {
         $liste = array();
-        $query = $this->db->query('SELECT * FROM noeud');
+        $query = $this->db->prepare('SELECT * FROM noeud where noeud.estDansCarte = :identifiant');
+        $query->bindValue(':identifiant', $idCarte, PDO::PARAM_INT);
+        $query->execute();
         while ($donnees = $query->fetch(PDO::FETCH_ASSOC)) {
             $liste[] = new noeud($donnees);
         }

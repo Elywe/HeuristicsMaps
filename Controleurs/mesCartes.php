@@ -7,7 +7,9 @@ class mesCartes {
         include_once('Modeles/carteManager.php');
         $managerCarte = new carteManager();
         $donnees["cartes"] = $managerCarte->getListCartes();
-        $donnees["noeuds"] = $managerCarte->getListNoeuds();
+        if (isset($_POST["carte"])) {
+            $donnees["noeuds"] = $managerCarte->getListPourUneCarte($_POST["carte"]);
+        }
         afficherVues("Vues/vueMesCartes.php", $donnees);
     }
 
