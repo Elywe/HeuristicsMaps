@@ -32,6 +32,7 @@
         </select>
         <div class="boutonsCartes">
             <input type="submit" class="bouton" name="Valider" value="Valider">
+            <input type="submit" class="bouton" name="Partager" value="Partager">
             </form>
             <a class="bouton" id="Supprimer">Supprimer</a>
             <a class="bouton" id="Renommer">Renommer</a>
