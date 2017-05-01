@@ -30,7 +30,9 @@
             ?>
         </select>
         <input type="submit" class="bouton" name="Valider" value="Valider">
-    </form>
+        <input type="submit" class="bouton" name="Partager" value="Partager">
+    </form>    
+
         <!--<input type="submit" class="bouton" name="Supprimer" value="Supprimer">-->
     <table>
         <?php

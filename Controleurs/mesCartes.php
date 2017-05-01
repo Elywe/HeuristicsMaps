@@ -8,6 +8,9 @@ class mesCartes {
         $managerCarte = new carteManager();
         $donnees["cartes"] = $managerCarte->getListCartes();
         if (isset($_POST["carte"])) {
+            if (isset($_POST['Partager'])) {
+                $this->partageCarte();
+            }else
             $donnees["noeuds"] = $managerCarte->getListPourUneCarte($_POST["carte"]);
         }
         afficherVues("Vues/vueMesCartes.php", $donnees);
@@ -36,6 +39,23 @@ class mesCartes {
         if (isset($_POST['Supprimer']) && isset($_POST['carte'])) {
             $carteASupprimer = htmlspecialchars($_POST['carte']);
             $manager->supprimerCarte($carteASupprimer);
+        } else {
+            $donnees['erreur'] = "Pas de carte sélectionnée.";
+        }
+        $donnees["cartes"] = $manager->getListCartes();
+        afficherVues("Vues/vueMesCartes.php", $donnees);
+    }
+
+    public function partageCarte(){
+        $donnees["titre"] = "Mes cartes";
+        $manager = new carteManager();
+        if (isset($_POST['Partager']) && isset($_POST['carte'])) {
+            $carteAPartager = htmlspecialchars($_POST['carte']);
+            $carte = $manager->getCarte($carteAPartager);
+            echo '<div class="alert">
+                  <span class="closebtn" onclick="this.parentElement.style.display=\'none\';">&times;</span> <a href="<?php echo "ta_page.php?var1=".$var1."&var2=".$var2."" ?>></a>
+                  <strong>Partage :</strong> Lien de la carte à partager :  <input type="text" name="partage" id="partage" value="http://localhost/ProjetWeb/index.php?section=partage&numCarte='. $carte->getIdentifiant() .'"/>
+              </div>';
         } else {
             $donnees['erreur'] = "Pas de carte sélectionnée.";
         }

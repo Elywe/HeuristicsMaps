@@ -55,6 +55,16 @@ class carteManager {
         $query->execute();
     }
 
+    public function getCarte($idCarte) {
+        $query = $this->db->prepare('SELECT * FROM carte where identifiant = :id');
+        $query->bindValue(':id', $idCarte, PDO::PARAM_INT);
+        $query->execute();
+        $donnees = $query->fetch(PDO::FETCH_ASSOC);
+        $carte = new carte($donnees);
+        return $carte;
+    }
+
+
     public function getListNoeuds() {
         $liste = array();
         $query = $this->db->query('SELECT * FROM noeud');
