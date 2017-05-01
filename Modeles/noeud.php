@@ -60,7 +60,7 @@ class noeud {
     public function setEstDansCarte($_estDansCarte) {
         $this->estDansCarte = $_estDansCarte;
     }
-    
+
     public function afficher() {
         echo "<li>" . $this->getLabel() . "<ul>";
         foreach ($this->enfants as $enfant) {
@@ -68,4 +68,5 @@ class noeud {
         }
         echo "</ul></li>";
     }
+
 }

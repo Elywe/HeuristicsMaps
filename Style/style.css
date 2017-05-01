@@ -176,7 +176,8 @@ select{
 
 #contenu{
 	color:#555;
-	width:800px;
+	width: 80%;
+	max-width:800px;
 	margin: 0 auto;
 	padding-top: 3em;
 }
