@@ -3,6 +3,17 @@
     padding: 0;
 }
 
+a{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-family: sans-serif;
+    font-size: 1em;
+    font-weight: normal;
+    font-style: normal;
+    text-decoration: none;
+}
+
 html{
 	height: 100%;
 }
@@ -95,6 +106,10 @@ select{
 	background-color: #b39ddb;
 	border-radius: 4px;
 	font-size: 15px;
+}
+
+.boutonsCartes{
+	padding-top: 1em;
 }
 
 .erreur{

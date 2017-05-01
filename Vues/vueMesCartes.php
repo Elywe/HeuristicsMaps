@@ -24,28 +24,27 @@
     <form class="carteBox" method="post" action="index.php?section=mesCartes">
         <select id="carte" name="carte">
             <?php
+            $idCarte = isset($_POST['carte']) ? $_POST['carte'] : -1;
             foreach ($cartes as $carte) {
-                echo "<option value=\"" . $carte->getIdentifiant() . "\">" . $carte->getNom() . "</option>";
+                echo "<option value=\"" . $carte->getIdentifiant() . "\"" . ($idCarte == $carte->getIdentifiant() ? " selected" : "") . ">" . $carte->getNom() . "</option>";
             }
             ?>
         </select>
-        <input type="submit" class="bouton" name="Valider" value="Valider">
-        <input type="submit" class="bouton" name="Partager" value="Partager">
-    </form>    
-
-        <!--<input type="submit" class="bouton" name="Supprimer" value="Supprimer">-->
-    <table>
-        <?php
-        if (isset($noeuds)) {
-            echo "<tr><th>identifiant</th><th>label</th><th>parent</th><th>estDansCarte</th></tr>";
-            foreach ($noeuds as $noeud) {
-                echo "<tr><td>" . $noeud->getIdentifiant() . "</td>";
-                echo "<td>" . $noeud->getLabel() . "</td>";
-                echo "<td>" . $noeud->getParent() . "</td>";
-                echo "<td>" . $noeud->getEstDansCarte() . "</td>";
-                echo "</tr>";
-            }
-        }
-        ?>
-    </table>
-</div>
+        <div class="boutonsCartes">
+            <input type="submit" class="bouton" name="Valider" value="Valider">
+            </form>
+            <a class="bouton" id="Supprimer">Supprimer</a>
+            <a class="bouton" id="Renommer">Renommer</a>
+        </div>
+        <table>
+            <?php
+            if (isset($noeuds)) {
+                echo "<tr><th>identifiant</th><th>label</th><th>parent</th><th>estDansCarte</th></tr>";
+                foreach ($noeuds as $noeud) {
+                    echo "<tr><td>" . $noeud->getIdentifiant() . "</td>";
+                    echo "<td>" . $noeud->getLabel() . "</td>";
+                    echo "<td>" . $noeud->getParent() . "</td>";
+                    echo "<td>" . $noeud->getEstDansCarte() . "</td>";
+                    echo "</tr>";
+                }
+                 }
