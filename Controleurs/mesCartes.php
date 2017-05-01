@@ -62,16 +62,12 @@ class mesCartes {
     public function partageCarte(){
         $donnees["titre"] = "Mes cartes";
         $manager = new carteManager();
-        if (isset($_POST['Partager']) && isset($_POST['carte'])) {
-            $carteAPartager = htmlspecialchars($_POST['carte']);
-            $carte = $manager->getCarte($carteAPartager);
-            echo '<div class="alert">
-                  <span class="closebtn" onclick="this.parentElement.style.display=\'none\';">&times;</span> <a href="<?php echo "ta_page.php?var1=".$var1."&var2=".$var2."" ?>></a>
-                  <strong>Partage :</strong> Lien de la carte à partager :  <input type="text" name="partage" id="partage" value="http://localhost/ProjetWeb/index.php?section=partage&numCarte='. $carte->getIdentifiant() .'"/>
-              </div>';
-        } else {
-            $donnees['erreur'] = "Pas de carte sélectionnée.";
-        }
+        $carteAPartager = htmlspecialchars($_POST['carte']);
+        $carte = $manager->getCarte($carteAPartager);
+        echo '<div class="alert">
+              <span class="closebtn" onclick="this.parentElement.style.display=\'none\';">&times;</span>
+              <strong>Partage :</strong> Lien de la carte partagee :  <input type="text" name="partage" id="partage" value="http://localhost/ProjetWeb/index.php?section=partage&numCarte='. $carte->getIdentifiant() .'"/>
+            </div>';
         $donnees["cartes"] = $manager->getListCartes();
         afficherVues("Vues/vueMesCartes.php", $donnees);
     }
