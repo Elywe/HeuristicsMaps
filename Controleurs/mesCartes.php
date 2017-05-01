@@ -66,7 +66,7 @@ class mesCartes {
         $carte = $manager->getCarte($carteAPartager);
         echo '<div class="alert">
               <span class="closebtn" onclick="this.parentElement.style.display=\'none\';">&times;</span>
-              <strong>Partage :</strong> Lien de la carte partagee :  <input type="text" name="partage" id="partage" value="http://localhost/ProjetWeb/index.php?section=partage&numCarte='. $carte->getIdentifiant() .'"/>
+              <strong>Partage :</strong> Lien de la carte partagée :  <input type="text" name="partage" id="partage" value="http://localhost/ProjetWeb/index.php?section=partage&numCarte='. $carte->getIdentifiant() .'"/>
             </div>';
         $donnees["cartes"] = $manager->getListCartes();
         afficherVues("Vues/vueMesCartes.php", $donnees);
