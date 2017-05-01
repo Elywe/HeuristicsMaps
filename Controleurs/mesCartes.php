@@ -33,14 +33,27 @@ class mesCartes {
         $donnees["titre"] = "Mes cartes";
         include_once('Modeles/carteManager.php');
         $manager = new carteManager();
-        if (isset($_POST['Supprimer']) && isset($_POST['carte'])) {
-            $carteASupprimer = htmlspecialchars($_POST['carte']);
-            $manager->supprimerCarte($carteASupprimer);
-        } else {
-            $donnees['erreur'] = "Pas de carte sélectionnée.";
-        }
+        $carteASupprimer = htmlspecialchars($_GET['idCarte']);
+        $manager->supprimerCarte($carteASupprimer);
         $donnees["cartes"] = $manager->getListCartes();
         afficherVues("Vues/vueMesCartes.php", $donnees);
+    }
+
+    public function renommerCarte() {
+        $donnees["titre"] = "Renommer une carte";
+        include_once('Modeles/carteManager.php');
+        $manager = new carteManager();
+        $carteARenommer = htmlspecialchars($_POST['idCarte']);
+        $nouveauNom = htmlspecialchars($_POST['nom']);
+        $manager->renommerCarte($carteARenommer, $nouveauNom);
+        $this->defaut();
+    }
+
+    public function renommerCarteFormulaire() {
+        $donnees["titre"] = "Renommer une carte";
+        $donnees["idCarte"] = htmlspecialchars($_GET['idCarte']);
+        $donnees["nomCarte"] = htmlspecialchars($_GET['nomCarte']);
+        afficherVues("Vues/vueRenommerCarte.php", $donnees);
     }
 
 }
