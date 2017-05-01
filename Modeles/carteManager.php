@@ -87,6 +87,16 @@ class carteManager {
         while ($donnees = $query->fetch(PDO::FETCH_ASSOC)) {
             $liste[] = new noeud($donnees);
         }
+        foreach ($liste as $noeud) {
+            if ($noeud->getParent() != NULL) {
+                foreach ($liste as $parentP) {
+                    if ($noeud->getParent() == $parentP->getIdentifiant()) {
+                        $parentP->ajouterEnfant($noeud);
+                        break;
+                    }
+                }
+            }
+        }
         return $liste;
     }
 

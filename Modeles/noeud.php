@@ -5,9 +5,11 @@ class noeud {
     private $identifiant;
     private $label;
     private $parent;
+    private $enfants;
     private $estDansCarte;
 
     function __construct($argument) {
+        $this->enfants = array();
         foreach ($argument as $k => $v) {
             $this->$k = $v;
         }
@@ -17,6 +19,15 @@ class noeud {
         foreach ($argument as $k => $v) {
             $this->$k = $v;
         }
+    }
+
+    public function getEnfants() {
+        return $this->enfants;
+    }
+
+    public function ajouterEnfant($enfant) {
+        $this->enfants[] = $enfant;
+        $enfant->setParent($this);
     }
 
     public function getIdentifiant() {
@@ -49,6 +60,14 @@ class noeud {
 
     public function setEstDansCarte($_estDansCarte) {
         $this->estDansCarte = $_estDansCarte;
+    }
+
+    public function afficher() {
+        echo "<li>" . $this->getLabel() . "<ul>";
+        foreach ($this->enfants as $enfant) {
+            $enfant->afficher();
+        }
+        echo "</ul></li>";
     }
 
 }
