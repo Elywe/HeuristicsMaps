@@ -1,4 +1,5 @@
 <?php
+
 class noeud {
 
     private $identifiant;
