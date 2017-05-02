@@ -71,8 +71,12 @@ h2{
 }
 
 .ajoutBox{
-	height: 24px;
+	height: 26px;
 	margin-bottom:0.5em;
+}
+
+#partage{
+	width: 500px;
 }
 
 #visibilite{

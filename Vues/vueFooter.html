@@ -18,9 +18,11 @@
 	var select = document.getElementById('carte');
 	var btnSupprimer = document.getElementById('Supprimer');
 	var btnRenommer = document.getElementById('Renommer');
+	var btnPartager = document.getElementById('Partager');
 	select.onchange = function () {
 		btnSupprimer.href = "index.php?section=mesCartes&action=supprimerCarte&idCarte=" + select.value;						//récupère le nom de la carte
 		btnRenommer.href = "index.php?section=mesCartes&action=renommerCarteFormulaire&idCarte=" + select.value + "&nomCarte=" + select.options[select.selectedIndex].text;
+		btnPartager.href = "index.php?section=mesCartes&action=partageCarte&idCarte=" + select.value;
 	}
 	select.onchange();
 </script>

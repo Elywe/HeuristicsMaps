@@ -8,9 +8,6 @@ class mesCartes {
         $managerCarte = new carteManager();
         $donnees["cartes"] = $managerCarte->getListCartes();
         if (isset($_POST["carte"])) {
-            if (isset($_POST['Partager'])) {
-                $this->partageCarte();
-            }else
             $donnees["noeuds"] = $managerCarte->getListPourUneCarte($_POST["carte"]);
         }
         afficherVues("Vues/vueMesCartes.php", $donnees);
@@ -59,15 +56,17 @@ class mesCartes {
         afficherVues("Vues/vueRenommerCarte.php", $donnees);
     }
 
-    public function partageCarte(){
+    public function partageCarte() {
         $donnees["titre"] = "Mes cartes";
+        include_once('Modeles/carteManager.php');
         $manager = new carteManager();
-        $carteAPartager = htmlspecialchars($_POST['carte']);
-        $carte = $manager->getCarte($carteAPartager);
-        echo '<div class="alert">
-              <span class="closebtn" onclick="this.parentElement.style.display=\'none\';">&times;</span>
-              <strong>Partage :</strong> Lien de la carte partagée :  <input type="text" name="partage" id="partage" value="http://localhost/ProjetWeb/index.php?section=partage&numCarte='. $carte->getIdentifiant() .'"/>
-            </div>';
+        $idCarteAPartager = htmlspecialchars($_GET['idCarte']);
+        $carte = $manager->getCarte($idCarteAPartager);
+        if ($carte->getVisibilite() == "public") {
+            $donnees["carte"] = $carte;
+        } else {
+            $donnees['erreur'] = "On ne peut pas partager une carte privée.";
+        }
         $donnees["cartes"] = $manager->getListCartes();
         afficherVues("Vues/vueMesCartes.php", $donnees);
     }
