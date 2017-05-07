@@ -84,8 +84,12 @@ h2{
 	width: 100px;
 }
 
-li{
-	margin-left: 1em;
+ul {
+	list-style-image : url(../Images/puce.gif);
+}
+
+li {
+	margin-left:3em;/* à adapter */
 }
 
 select{
