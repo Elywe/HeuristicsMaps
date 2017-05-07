@@ -37,6 +37,7 @@ class mesCartes {
             $carte = new carte($_POST);
             $manager->ajouterCarte($carte);
         }
+        $manager->ajoutNoeud("root", null, $carte->getIdentifiant());
         $donnees["cartes"] = $manager->getListCartes();
         afficherVues("Vues/vueMesCartes.php", $donnees);
     }
