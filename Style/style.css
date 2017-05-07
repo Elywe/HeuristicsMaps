@@ -89,7 +89,15 @@ ul {
 }
 
 li {
-	margin-left:3em;/* à adapter */
+	margin-left:3em;
+}
+
+.ajouterCarte{
+	float: right;
+}
+
+.affichageNoeuds{
+
 }
 
 select{
