@@ -115,4 +115,14 @@ class mesCartes {
         afficherVues("Vues/vueMesCartes.php", $donnees);
     }
 
+    public function renommerNoeud() {
+        $donnees["titre"] = "Mes cartes";
+        include_once('Modeles/carteManager.php');
+        $manager = new carteManager();
+        $idNoeudARenommer = htmlspecialchars($_GET['idNoeud']);
+        $nouveauNom = htmlspecialchars($_GET['label']);
+        $manager->renommerNoeud($idNoeudARenommer, $nouveauNom);
+        $this->voirCarte();
+    }
+
 }

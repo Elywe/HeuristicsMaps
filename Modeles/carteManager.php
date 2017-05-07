@@ -96,6 +96,15 @@ class carteManager {
         $query->execute();
     }
 
+    public function renommerNoeud($idNoeud, $nouveauNom) {
+        $query = $this->db->prepare('UPDATE noeud
+			SET label=:nom
+			WHERE identifiant=:id');
+        $query->bindValue(':id', $idNoeud, PDO::PARAM_INT);
+        $query->bindValue(':nom', $nouveauNom);
+        $query->execute();
+    }
+
     public function getListPourUneCarte($idCarte) {
         $liste = array();
         $query = $this->db->prepare('SELECT * FROM noeud where noeud.estDansCarte = :identifiant');
