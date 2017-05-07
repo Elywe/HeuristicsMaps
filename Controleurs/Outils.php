@@ -3,7 +3,7 @@
 session_start();
 
 function afficherVues($vue, $donnees) {
-    //création variables (cartes, titre)
+    //création variables (cartes, titre, noeuds)
     foreach ($donnees as $k => $v) {
         $$k = $v;
     }

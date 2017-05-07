@@ -4,6 +4,7 @@ var btnRenommer = document.getElementById('Renommer');
 var btnPartager = document.getElementById('Partager');
 var btnAjoutEnfant = document.querySelectorAll('.AjouterEnfant');
 var btnSupprimerNoeud = document.querySelectorAll('.SupprimerNoeud');
+var btnAfficherBoutons = document.getElementById('AfficherBoutons');
 var btnRenommerNoeud = document.querySelectorAll('.RenommerNoeud');
 btnAjoutEnfant.forEach(btn => {
 	btn.onclick = function () {
@@ -38,3 +39,31 @@ select.onchange = function () {
 	btnPartager.href = "index.php?section=mesCartes&action=partageCarte&idCarte=" + select.value;
 }
 select.onchange();
+
+function cacher() {
+	btnAjoutEnfant.forEach(btn => {
+		btn.style.display = "none";
+	})
+	btnRenommerNoeud.forEach(btn => {
+		btn.style.display = "none";
+	})
+	btnSupprimerNoeud.forEach(btn => {
+		btn.style.display = "none";
+	})
+	btnAfficherBoutons.onclick = afficher;
+	btnAfficherBoutons.text = "Afficher";
+}
+
+function afficher() {
+	btnAjoutEnfant.forEach(btn => {
+		btn.style.display = "inline";
+	})
+	btnRenommerNoeud.forEach(btn => {
+		btn.style.display = "inline";
+	})
+	btnSupprimerNoeud.forEach(btn => {
+		btn.style.display = "inline";
+	})
+	btnAfficherBoutons.onclick = cacher;
+	btnAfficherBoutons.text = "Cacher";
+}

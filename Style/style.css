@@ -96,8 +96,9 @@ li {
 	float: right;
 }
 
-.affichageNoeuds{
-
+.cacherBoutons{
+	display: inline-block;
+	margin-top: 1em;
 }
 
 select{

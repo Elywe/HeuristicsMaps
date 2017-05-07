@@ -67,4 +67,5 @@
             ?>
         </table>
     </div>
+    <a class="bouton cacherBoutons" onclick="cacher()" id="AfficherBoutons">Cacher</a>
 </div>
