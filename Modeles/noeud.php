@@ -63,7 +63,7 @@ class noeud {
     }
 
     public function afficher() {
-        echo "<li>" . $this->getLabel() . "<ul>";
+        echo "<li>" . $this->getLabel() . "<a  data-id =\"" . $this->getIdentifiant() . "\" class = 'bouton AjouterEnfant'>+</a><ul>";
         foreach ($this->enfants as $enfant) {
             $enfant->afficher();
         }

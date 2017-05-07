@@ -1,6 +1,5 @@
 <?php
 
-
 include_once("carte.php");
 include_once("noeud.php");
 
@@ -64,7 +63,6 @@ class carteManager {
         return $carte;
     }
 
-
     public function getListNoeuds() {
         $liste = array();
         $query = $this->db->query('SELECT * FROM noeud');
@@ -74,14 +72,13 @@ class carteManager {
         return $liste;
     }
 
-    public function ajoutNoeud() {
+    public function ajoutNoeud($label, $parent, $carte) {
         $query = $this->db->prepare('INSERT INTO noeud (identifiant, label, parent, estDansCarte) values (:identifiant, :label, :parent, :estDansCarte)');
         $query->bindValue(':identifiant', null, PDO::PARAM_INT);
-        $query->bindValue(':label', $noeud->getLabel());
-        $query->bindValue(':parent', $noeud->getParent());
-        $query->bindValue(':estDansCarte', $noeud->getEstDansCartes());
+        $query->bindValue(':label', $label);
+        $query->bindValue(':parent', $parent);
+        $query->bindValue(':estDansCarte', $carte);
         $query->execute();
-        $noeud->setIdentifiant($this->db->lastInsertId());
     }
 
     public function supprimerNoeud($idNoeud) {

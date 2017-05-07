@@ -13,6 +13,18 @@ class mesCartes {
         afficherVues("Vues/vueMesCartes.php", $donnees);
     }
 
+    public function voirCarte() {
+        $donnees["titre"] = "Mes cartes";
+        include_once('Modeles/carteManager.php');
+        $managerCarte = new carteManager();
+        $donnees["cartes"] = $managerCarte->getListCartes();
+        if (isset($_GET["carte"])) {
+            $donnees["noeuds"] = $managerCarte->getListPourUneCarte($_GET["carte"]);
+            $donnees['idCarte'] = $_GET['carte'];
+        }
+        afficherVues("Vues/vueMesCartes.php", $donnees);
+    }
+
     public function ajoutCarte() {
         $donnees["titre"] = "Mes cartes";
         include_once('Modeles/carteManager.php');
@@ -68,6 +80,20 @@ class mesCartes {
             $donnees['erreur'] = "On ne peut pas partager une carte privée.";
         }
         $donnees["cartes"] = $manager->getListCartes();
+        afficherVues("Vues/vueMesCartes.php", $donnees);
+    }
+
+    public function ajoutNoeud() {
+        $donnees["titre"] = "Mes cartes";
+        include_once('Modeles/carteManager.php');
+        $manager = new carteManager();
+        $idCarte = htmlspecialchars($_GET['idCarte']);
+        $idNoeud = htmlspecialchars($_GET['idNoeud']);
+        $label = htmlspecialchars($_GET['label']);
+        $manager->ajoutNoeud($label, $idNoeud, $idCarte);
+        $donnees["idCarte"] = $idCarte;
+        $donnees["cartes"] = $manager->getListCartes();
+        $donnees["noeuds"] = $manager->getListPourUneCarte($idCarte);
         afficherVues("Vues/vueMesCartes.php", $donnees);
     }
 
