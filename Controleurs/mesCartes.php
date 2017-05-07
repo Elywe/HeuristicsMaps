@@ -104,7 +104,11 @@ class mesCartes {
         $manager = new carteManager();
         $idCarte = htmlspecialchars($_GET['idCarte']);
         $idNoeud = htmlspecialchars($_GET['idNoeud']);
-        $manager->supprimerNoeud($idNoeud);
+        if ($manager->getNoeud($idNoeud)->getParent() == NULL) {
+            $donnees['erreur'] = "Impossible de supprimer le noeud root.";
+        } else {
+            $manager->supprimerNoeud($idNoeud);
+        }
         $donnees["idCarte"] = $idCarte;
         $donnees["cartes"] = $manager->getListCartes();
         $donnees["noeuds"] = $manager->getListPourUneCarte($idCarte);
