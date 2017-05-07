@@ -11,11 +11,9 @@ class mesCartes {
 			include_once('Modeles/utilisateurManager.php');
 			if(isset($_SESSION['pseudo'])){
 				$utilMana = new utilisateurManager();
-				$donnees["droit"]=$utilMana->droit($_POST["carte"]);
-            }else{
-				$donnees["droit"]="Non connecté";
-			}
-			$donnees["noeuds"] = $managerCarte->getListPourUneCarte($_POST["carte"]);
+				$_SESSION["droit"]=$utilMana->droit($_POST["carte"]);
+            }
+            $donnees["noeuds"] = $managerCarte->getListPourUneCarte($_POST["carte"]);
         }
         afficherVues("Vues/vueMesCartes.php", $donnees);
     }
