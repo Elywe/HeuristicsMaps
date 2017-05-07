@@ -47,10 +47,15 @@
             <div class="boutonsCartes">
                 <input type="submit" class="bouton" name="Valider" value="Valider">
                 </form>
+				<?php
+				if (isset($_SESSION['pseudo'])) {
+				?>
                 <a class="bouton" id="Supprimer">Supprimer</a>
                 <a class="bouton" id="Renommer">Renommer</a>
                 <a class="bouton" id="Partager">Partager</a>
-            </div>
+				<?php }
+				?>
+			</div>
     </div>
     <div class="affichageNoeuds">
         <table>

@@ -29,7 +29,18 @@ class utilisateurManager {
     }
 
     public function getlogin($pseudo, $mdp) {
-        $sql = $this->db->query("SELECT identifiant,pseudo,mdp FROM utilisateur where pseudo='" . $pseudo . "' and mdp='" . $mdp . "'");
+        
+		$sql = $this->db->query("SELECT identifiant,pseudo,mdp FROM utilisateur where pseudo='" . $pseudo . "'");
+        $donnees = $sql->fetch(PDO::FETCH_ASSOC);
+		if (password_verify($mdp, $donnees['mdp'])) {
+            $_SESSION['identifiant'] = $donnees['identifiant'];
+            $_SESSION['pseudo'] = $donnees['pseudo'];  //ouverture de la session de l'utilisateur à la connexion
+            $_SESSION['mdp'] = $donnees['mdp'];
+            return 'Connecte';
+        } else {
+            return 'Login ou mot de passe erroné.';
+        }
+		/*$sql = $this->db->query("SELECT identifiant,pseudo,mdp FROM utilisateur where pseudo='" . $pseudo . "' and mdp='" . $mdp . "'");
         if ($donnees = $sql->fetch(PDO::FETCH_ASSOC)) {
             $_SESSION['identifiant'] = $donnees['identifiant'];
             $_SESSION['pseudo'] = $donnees['pseudo'];  //ouverture de la session de l'utilisateur à la connexion
@@ -37,7 +48,7 @@ class utilisateurManager {
             return 'Connecte';
         } else {
             return 'Utilisateur non reconnu';
-        }
+        }*/
     }
 
     public function update($utilisateur) {

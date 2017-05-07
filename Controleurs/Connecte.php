@@ -18,7 +18,8 @@ class connecte {
         include_once('Modeles/utilisateurManager.php');
         $util = new utilisateur($_SESSION);
         $mdp = htmlspecialchars($_POST['passChange']);
-        $util->setMdp($mdp);
+        //$util->setMdp($mdp);
+        $util->setMdp(password_hash($mdp, PASSWORD_DEFAULT));
         $mana = new utilisateurManager();
         $mana->update($util);
         $donnees["titre"] = "Votre profil";

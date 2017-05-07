@@ -14,14 +14,14 @@ class connexion {
         if (isset($_POST['ValCo'])) {
             $pseudo = htmlspecialchars($_POST['pseudo']);
             $mdp = htmlspecialchars($_POST['mdp']);
-            $res = $manager->getlogin($pseudo, $mdp);
+			$res = $manager->getlogin($pseudo, $mdp);
             if ($res == 'Connecte') {
                 include_once('Controleurs/mesCartes.php');
                 $cartes = new mesCartes();
                 $cartes->defaut();
             } else {
                 $donnees["titre"] = "Connexion";
-                $donnees['erreur'] = "Login ou mot de passe erroné.";
+                $donnees['erreur'] = $res;
                 afficherVues("Vues/vueConnexion.php", $donnees);
             }
         }
@@ -39,8 +39,9 @@ class connexion {
             unset($_POST['ValInsc']);
             foreach ($_POST as $key => $value) {
                 $_POST[$key] = htmlspecialchars($value);
-            }
-            $util = new utilisateur($_POST);
+			}
+			$_POST['mdp']= password_hash($_POST['mdp'], PASSWORD_DEFAULT);
+			$util = new utilisateur($_POST);
             $manaUtil->ajouter($util);
         }
         include_once('Controleurs/mesCartes.php');
