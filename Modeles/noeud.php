@@ -63,11 +63,11 @@ class noeud {
     }
 
     public function afficher() {
-        echo "<li>" . $this->getLabel() . "<a  data-id =\"" . $this->getIdentifiant() . "\" class = 'bouton AjouterEnfant'>+</a>";
+        echo "<li>" . $this->getLabel() . "<a  data-id =\"" . $this->getIdentifiant() . "\" class = 'AjouterEnfant boutonsNoeuds boutonPlus'/>+</a>";
         if ($this->getParent() != null) {
-            echo "<a  data-id =\"" . $this->getIdentifiant() . "\" class = 'bouton SupprimerNoeud'>-</a>";
+            echo "<a  data-id =\"" . $this->getIdentifiant() . "\" class = 'SupprimerNoeud boutonsNoeuds'>-</a>";
         }
-        echo "<a  data-id =\"" . $this->getIdentifiant() . "\" class = 'bouton RenommerNoeud'>o</a><ul>";
+        echo "<a  data-id =\"" . $this->getIdentifiant() . "\" class = 'RenommerNoeud boutonsNoeuds boutonRenommer'>r</a><ul>";
         foreach ($this->enfants as $enfant) {
             $enfant->afficher();
         }

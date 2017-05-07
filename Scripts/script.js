@@ -10,6 +10,7 @@ btnAjoutEnfant.forEach(btn => {
 		var input = document.createElement('input');
 		input.type = "text";
 		input.classList.add("ajoutBox");
+		input.classList.add("inputDynamique");
 		btn.parentNode.insertBefore(input, btn);
 		btn.onclick = function () {
 			window.location.href = "index.php?section=mesCartes&action=ajoutNoeud&idNoeud=" + btn.dataset.id + "&idCarte=" + select.value + "&label=" + input.value;
@@ -21,6 +22,7 @@ btnRenommerNoeud.forEach(btn => {
 		var input = document.createElement('input');
 		input.type = "text";
 		input.classList.add("ajoutBox");
+		input.classList.add("inputDynamique");
 		btn.parentNode.insertBefore(input, btn);
 		btn.onclick = function () {
 			window.location.href = "index.php?section=mesCartes&action=renommerNoeud&idNoeud=" + btn.dataset.id + "&label=" + input.value + "&carte=" + select.value;
