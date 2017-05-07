@@ -97,4 +97,17 @@ class mesCartes {
         afficherVues("Vues/vueMesCartes.php", $donnees);
     }
 
+    public function supprimerNoeud() {
+        $donnees["titre"] = "Mes cartes";
+        include_once('Modeles/carteManager.php');
+        $manager = new carteManager();
+        $idCarte = htmlspecialchars($_GET['idCarte']);
+        $idNoeud = htmlspecialchars($_GET['idNoeud']);
+        $manager->supprimerNoeud($idNoeud);
+        $donnees["idCarte"] = $idCarte;
+        $donnees["cartes"] = $manager->getListCartes();
+        $donnees["noeuds"] = $manager->getListPourUneCarte($idCarte);
+        afficherVues("Vues/vueMesCartes.php", $donnees);
+    }
+
 }

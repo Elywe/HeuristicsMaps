@@ -20,6 +20,7 @@
 	var btnRenommer = document.getElementById('Renommer');
 	var btnPartager = document.getElementById('Partager');
 	var btnAjoutEnfant = document.querySelectorAll('.AjouterEnfant');
+	var btnSupprimerNoeud = document.querySelectorAll('.SupprimerNoeud');
 	btnAjoutEnfant.forEach(btn => {
 		btn.onclick = function () {
 			var input = document.createElement('input');
@@ -29,6 +30,11 @@
 			btn.onclick = function () {
 				window.location.href = "index.php?section=mesCartes&action=ajoutNoeud&idNoeud=" + btn.dataset.id + "&idCarte=" + select.value + "&label=" + input.value;
 			}
+		}
+	})
+	btnSupprimerNoeud.forEach(btn => {
+		btn.onclick = function () {
+			window.location.href = "index.php?section=mesCartes&action=supprimerNoeud&idNoeud=" + btn.dataset.id + "&idCarte=" + select.value;
 		}
 	})
 	select.onchange = function () {
