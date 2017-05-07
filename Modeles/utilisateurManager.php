@@ -63,5 +63,11 @@ class utilisateurManager {
         $query->bindValue(':id', $idUtilisateur, PDO::PARAM_INT);
         $query->execute();
     }
+	
+	public function droit($idCarte){
+		$sql = $this->db->query("SELECT role FROM utilise where idUtilisateur='" . $_SESSION['identifiant'] . "' and idCarte ='".$idCarte."'");
+		$donnees = $sql->fetch(PDO::FETCH_ASSOC);
+		return $donnees['role'];
+	}
 
 }

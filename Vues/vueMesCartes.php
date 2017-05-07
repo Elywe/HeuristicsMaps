@@ -60,11 +60,17 @@
     <div class="affichageNoeuds">
         <table>
             <?php
+			
             if (isset($noeuds)) {
+				
                 foreach ($noeuds as $noeud) {
                     if ($noeud->getParent() == NULL) {
                         echo "<ul>";
-                        $noeud->afficher();
+						if ($droit=="createur" || $droit=="administrateur" || $droit=="editeur"){
+							$noeud->afficher();
+						}else{
+							$noeud->afficherSimple();
+						}
                         echo "</ul>";
                     }
                 }

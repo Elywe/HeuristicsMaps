@@ -73,5 +73,14 @@ class noeud {
         }
         echo "</ul></li>";
     }
+	
+	public function afficherSimple() {
+        echo "<li>" . $this->getLabel()."<ul>";
+        foreach ($this->enfants as $enfant) {
+            $enfant->afficherSimple();
+        }
+        echo "</ul></li>";
+    }
+	
 
 }

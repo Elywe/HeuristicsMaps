@@ -8,7 +8,14 @@ class mesCartes {
         $managerCarte = new carteManager();
         $donnees["cartes"] = $managerCarte->getListCartes();
         if (isset($_POST["carte"])) {
-            $donnees["noeuds"] = $managerCarte->getListPourUneCarte($_POST["carte"]);
+			include_once('Modeles/utilisateurManager.php');
+			if(isset($_SESSION['pseudo'])){
+				$utilMana = new utilisateurManager();
+				$donnees["droit"]=$utilMana->droit($_POST["carte"]);
+            }else{
+				$donnees["droit"]="Non connecté";
+			}
+			$donnees["noeuds"] = $managerCarte->getListPourUneCarte($_POST["carte"]);
         }
         afficherVues("Vues/vueMesCartes.php", $donnees);
     }
@@ -17,9 +24,9 @@ class mesCartes {
         $donnees["titre"] = "Mes cartes";
         include_once('Modeles/carteManager.php');
         $managerCarte = new carteManager();
-        $donnees["cartes"] = $managerCarte->getListCartes();
+		$donnees["cartes"] = $managerCarte->getListCartes();
         if (isset($_GET["carte"])) {
-            $donnees["noeuds"] = $managerCarte->getListPourUneCarte($_GET["carte"]);
+			$donnees["noeuds"] = $managerCarte->getListPourUneCarte($_GET["carte"]);
             $donnees['idCarte'] = $_GET['carte'];
         }
         afficherVues("Vues/vueMesCartes.php", $donnees);
