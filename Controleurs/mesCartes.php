@@ -11,11 +11,9 @@ class mesCartes {
 			include_once('Modeles/utilisateurManager.php');
 			if(isset($_SESSION['pseudo'])){
 				$utilMana = new utilisateurManager();
-				$donnees["droit"]=$utilMana->droit($_POST["carte"]);
-            }else{
-				$donnees["droit"]="Non connecté";
-			}
-			$donnees["noeuds"] = $managerCarte->getListPourUneCarte($_POST["carte"]);
+				$_SESSION["droit"]=$utilMana->droit($_POST["carte"]);
+            }
+            $donnees["noeuds"] = $managerCarte->getListPourUneCarte($_POST["carte"]);
         }
         afficherVues("Vues/vueMesCartes.php", $donnees);
     }
@@ -82,14 +80,25 @@ class mesCartes {
         $manager = new carteManager();
         $idCarteAPartager = htmlspecialchars($_GET['idCarte']);
         $carte = $manager->getCarte($idCarteAPartager);
-        if ($carte->getVisibilite() == "public") {
+        if (isset($_SESSION['pseudo'])) {
+			include_once('Modeles/utilisateurManager.php');
+			$uManager = new utilisateurManager();
+            $donnees["utilisateurs"] = $uManager->getList();
+            $donnees["utilCarte"] = $uManager->getListCarte($_GET['idCarte']);
+            $donnees["droit"] = $uManager->droit($_GET['idCarte']);
+		}
             $donnees["carte"] = $carte;
-        } else {
-            $donnees['erreur'] = "On ne peut pas partager une carte privée.";
-        }
         $donnees["cartes"] = $manager->getListCartes();
         afficherVues("Vues/vueMesCartes.php", $donnees);
     }
+	
+	public function changeDroit(){
+		$donnees["titre"] = "Mes cartes";
+		include_once('Modeles/utilisateurManager.php');
+		$uManager = new utilisateurManager();
+		$uManager->modifDroit($_POST['idCarte'],$_POST['utilisateur'],$_POST['role']);
+		Header('Location: index.php?section=mesCartes&action=partageCarte&idCarte='.$_POST['idCarte']);
+	}
 
     public function ajoutNoeud() {
         $donnees["titre"] = "Mes cartes";

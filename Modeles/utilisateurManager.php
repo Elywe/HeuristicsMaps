@@ -18,6 +18,15 @@ class utilisateurManager {
         }
         return $liste;
     }
+    
+	public function getListCarte($idCarte) {
+		$liste = array();
+        $query = $this->db->query('SELECT utilisateur.pseudo, utilise.role FROM utilisateur,utilise where utilisateur.identifiant=utilise.idUtilisateur and utilise.idCarte='.$idCarte);
+         while ($donnees = $query->fetch(PDO::FETCH_ASSOC)) {
+            $liste[] = $donnees;
+        }
+		return $liste;
+    }	
 
     public function ajouter($utilisateur) {
         $query = $this->db->prepare('INSERT INTO utilisateur (identifiant, pseudo, mdp) values (:identifiant, :pseudo, :mdp)');
@@ -68,6 +77,15 @@ class utilisateurManager {
 		$sql = $this->db->query("SELECT role FROM utilise where idUtilisateur='" . $_SESSION['identifiant'] . "' and idCarte ='".$idCarte."'");
 		$donnees = $sql->fetch(PDO::FETCH_ASSOC);
 		return $donnees['role'];
+	}
+	
+	public function modifDroit($idCarte,$idUtilisateur,$role){
+		$verif = $this->db->query("select role from utilise where idCarte=".$idCarte." and idUtilisateur=".$idUtilisateur);
+		if($verif->fetch(PDO::FETCH_ASSOC)){
+			$sql = $this->db->query("update utilise set role='".$role."' where idCarte=".$idCarte." and idUtilisateur=".$idUtilisateur);
+		}else{
+			$sql = $this->db->query("insert into utilise values(".$idCarte.", ".$idUtilisateur.", '".$role."')");		
+		}
 	}
 
 }

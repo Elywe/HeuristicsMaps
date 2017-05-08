@@ -5,7 +5,55 @@
         <div class = "alert">
             <span class = "closebtn" onclick = "this.parentElement.style.display = 'none';">&times;</span>
             <strong>Partage :</strong> Lien de la carte partagée : <input class = "ajoutBox" type = "text" name = "partage" id = "partage" value = "http://localhost/ProjetWeb/index.php?section=mesCartes&action=voirCarte&carte=<?php echo $carte->getIdentifiant() ?>"/>
-        </div>
+		<?php
+			if(isset($_SESSION['pseudo'])){
+				if($droit=="createur" || $droit=="administrateur"){
+		?>
+				<form class="utilBox" method="post" action="index.php?section=mesCartes&action=changeDroit">
+					<select id="utilisateur" name="utilisateur">
+						<?php
+						if (!isset($idUtil)) {
+							$idUtil = isset($_POST['utilisateur']) ? $_POST['utilisateur'] : -1;
+						}
+						foreach ($utilisateurs as $utilisateur) {
+							if($_SESSION['pseudo']!=$utilisateur->getPseudo()){
+								echo "<option value=\"" . $utilisateur->getIdentifiant() . "\"" . ($idUtil == $utilisateur->getIdentifiant() ? " selected" : "") . ">" . $utilisateur->getPseudo() . "</option>";
+							}
+						}
+						?>
+					</select>
+					<select id="role" name="role">
+                        <option value="administrateur">Administrateur</option>
+                        <option value="editeur">Editeur</option>
+                        <option value="consultant">Consultant</option>
+                    </select>
+					<input type="hidden" name="idCarte" value=<?php echo $carte->getIdentifiant(); ?>>
+					<input type="submit" class="bouton" name="Valider" value="Valider">
+                </form>
+				
+				<table>
+					<thead>
+						<tr>
+							<th>Pseudo</th>
+							<th>Role</th>
+						</tr>
+					</thead>
+					<tbody>
+				<?php
+					
+					foreach ($utilCarte as $util) {
+						echo '<tr>';
+						echo '<td>'.$util['pseudo'].'</td><td>'.$util['role'].'</td>';
+						echo '</tr>';
+					}
+					echo '</tbody>';
+					echo '</table>';
+				}
+				
+			}
+		?>
+
+	   </div>
         <?php
     }
     ?>
@@ -66,11 +114,15 @@
                 foreach ($noeuds as $noeud) {
                     if ($noeud->getParent() == NULL) {
                         echo "<ul>";
-						if ($droit=="createur" || $droit=="administrateur" || $droit=="editeur"){
-							$noeud->afficher();
-						}else{
-							$noeud->afficherSimple();
-						}
+                            if (isset($_SESSION["droit"])){ 
+								if($_SESSION["droit"]=="createur" || $_SESSION["droit"]=="administrateur" || $_SESSION["droit"]=="editeur"){
+                                    $noeud->afficher();
+                                }else{
+                                    $noeud->afficherSimple();
+				}
+                            }else{
+								$noeud->afficherSimple();
+                            }
                         echo "</ul>";
                     }
                 }
