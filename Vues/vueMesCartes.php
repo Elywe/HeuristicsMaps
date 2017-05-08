@@ -115,13 +115,13 @@
                     if ($noeud->getParent() == NULL) {
                         echo "<ul>";
                             if (isset($_SESSION["droit"])){ 
-								if($_SESSION["droit"]=="createur" || $_SESSION["droit"]=="administrateur" || $_SESSION["droit"]=="editeur"){
+				if($_SESSION["droit"]=="createur" || $_SESSION["droit"]=="administrateur" || $_SESSION["droit"]=="editeur"){
                                     $noeud->afficher();
                                 }else{
                                     $noeud->afficherSimple();
 				}
                             }else{
-								$noeud->afficherSimple();
+				$noeud->afficherSimple();
                             }
                         echo "</ul>";
                     }
